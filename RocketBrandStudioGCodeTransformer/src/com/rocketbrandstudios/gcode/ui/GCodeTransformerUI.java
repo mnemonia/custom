@@ -74,7 +74,13 @@ public final class GCodeTransformerUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gCodeTransformer.setExportFile();
+				final JFileChooser fc = new JFileChooser();
+			    int returnVal = fc.showOpenDialog(GCodeTransformerUI.this);
+				//
+			    if (returnVal == JFileChooser.APPROVE_OPTION) {
+			        File file = fc.getSelectedFile();
+			        gCodeTransformer.setExportFile(file);			        
+			    }
 			}
 		});
 

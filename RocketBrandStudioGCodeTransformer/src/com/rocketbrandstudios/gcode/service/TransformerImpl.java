@@ -21,19 +21,23 @@ public final class TransformerImpl implements Transformer {
 	
 	
 	public TransformerImpl(){
-		transformations.add(new RemoveLineTransformation("M104"));
-		transformations.add(new RemoveLineTransformation("M105"));
-		transformations.add(new RemoveLineTransformation("M106"));
-		transformations.add(new RemoveLineTransformation("M107"));
-		transformations.add(new RemoveLineTransformation("M140"));
-		transformations.add(new RemoveLineTransformation("M141"));
-		transformations.add(new RemoveLineTransformation("M142"));
-		transformations.add(new RemoveLineTransformation("M113"));
-		transformations.add(new RemoveLineStartTransformation("M108"));
-		transformations.add(new ReplaceLineStartTransformation("M101", "M8"));
-		transformations.add(new ReplaceLineStartTransformation("M103", "M9"));
-		transformations.add(new ScaleValuesTransformation("F",60));
-		transformations.add(new ScaleValuesTransformation("S",60));
+		add(new RemoveLineTransformation("M104"));
+		add(new RemoveLineTransformation("M105"));
+		add(new RemoveLineTransformation("M106"));
+		add(new RemoveLineTransformation("M107"));
+		add(new RemoveLineTransformation("M140"));
+		add(new RemoveLineTransformation("M141"));
+		add(new RemoveLineTransformation("M142"));
+		add(new RemoveLineTransformation("M113"));
+		add(new RemoveLineStartTransformation("M108"));
+		add(new ReplaceLineStartTransformation("M101", "M8"));
+		add(new ReplaceLineStartTransformation("M103", "M9"));
+		add(new ScaleValuesTransformation("F",60));
+		add(new ScaleValuesTransformation("S",60));
+	}
+	
+	private void add(Transformation t){
+		transformations.add(t);
 	}
 	
 	@Override
@@ -54,6 +58,7 @@ public final class TransformerImpl implements Transformer {
 			for (Line line : content) {
 				f.println(line.getValue());
 			}
+			f.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

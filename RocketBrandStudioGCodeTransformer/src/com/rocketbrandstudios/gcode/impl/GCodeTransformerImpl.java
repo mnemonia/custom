@@ -15,15 +15,12 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	
 	@Override
 	public void go() {
-		System.out
-		.println("Go");
 		new TransformerImpl().transform(in, out);
 	}
 
 	@Override
-	public void setExportFile() {
-		System.out.println("setExportFile");
-//		this.out = out;
+	public void setExportFile(File out) {
+		this.out = out;
 	}
 
 	@Override
@@ -33,7 +30,6 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 
 	@Override
 	public void setImportFile(File file) {
-		System.out.println("setImportFile: "+file.getAbsolutePath());
 		this.in = file;
 	}
 
