@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.rocketbrandstudios.gcode.model.Line;
 import com.rocketbrandstudios.gcode.model.Lines;
+import com.rocketbrandstudios.gcode.service.transformer.transformations.AppendM03AfterG90AndG21Transformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.RemoveLineStartTransformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.RemoveLineTransformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.ReplaceLineStartTransformation;
@@ -21,6 +22,7 @@ public final class TransformerImpl implements Transformer {
 	
 	
 	public TransformerImpl(){
+		add(new AppendM03AfterG90AndG21Transformation());
 		add(new RemoveLineTransformation("M104"));
 		add(new RemoveLineTransformation("M105"));
 		add(new RemoveLineTransformation("M106"));
@@ -33,7 +35,7 @@ public final class TransformerImpl implements Transformer {
 		add(new ReplaceLineStartTransformation("M101", "M8"));
 		add(new ReplaceLineStartTransformation("M103", "M9"));
 		add(new ScaleValuesTransformation("F",60));
-		add(new ScaleValuesTransformation("S",60));
+		add(new ScaleValuesTransformation("S",1));
 	}
 	
 	private void add(Transformation t){

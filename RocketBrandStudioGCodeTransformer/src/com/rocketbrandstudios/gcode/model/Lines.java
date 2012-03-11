@@ -34,4 +34,8 @@ public final class Lines implements Iterable<Line> {
 		lines.remove(line);
 		lines.add(index, newLine);
 	}
+
+	public void insert(Line line, int index) {
+		lines.add(index, line);
+	}
 }
