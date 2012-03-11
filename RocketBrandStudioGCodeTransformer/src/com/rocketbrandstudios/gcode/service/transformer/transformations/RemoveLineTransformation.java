@@ -16,7 +16,7 @@ public final class RemoveLineTransformation implements Transformation {
 		for (Line line : in) {
 			if(line.toString().contains(valueToRemove)){
 				in.remove(line);
-				System.out.println("RemoveLineTransformation remove "+valueToRemove);
+//				System.out.println("RemoveLineTransformation remove "+valueToRemove);
 			}
 		}
 		return in;

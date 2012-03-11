@@ -14,6 +14,7 @@ import com.rocketbrandstudios.gcode.model.Lines;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.RemoveLineStartTransformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.RemoveLineTransformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.ReplaceLineStartTransformation;
+import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleValuesTransformation;
 
 public final class TransformerImpl implements Transformer {
 	private final List<Transformation> transformations = new ArrayList<Transformation>();
@@ -31,12 +32,14 @@ public final class TransformerImpl implements Transformer {
 		transformations.add(new RemoveLineStartTransformation("M108"));
 		transformations.add(new ReplaceLineStartTransformation("M101", "M8"));
 		transformations.add(new ReplaceLineStartTransformation("M103", "M9"));
+		transformations.add(new ScaleValuesTransformation("F",60));
+		transformations.add(new ScaleValuesTransformation("S",60));
 	}
 	
 	@Override
 	public void transform(File in, File out) {
 		Lines content = readContent(in);
-		System.out.println("TransformerImpl.transform: "+content);
+
 		for (Transformation transformation : transformations) {
 			content = transformation.transform(content);
 		}

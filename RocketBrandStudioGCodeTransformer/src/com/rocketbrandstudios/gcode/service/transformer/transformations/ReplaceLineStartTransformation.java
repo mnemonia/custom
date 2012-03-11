@@ -21,7 +21,7 @@ public class ReplaceLineStartTransformation implements Transformation {
 				v = v.replace(search, replace);
 				Line newLine = new Line(v);
 				in.replace(line,newLine);
-				System.out.println("ReplaceLineStartTransformation replace "+search+" with "+replace);
+//				System.out.println("ReplaceLineStartTransformation replace "+search+" with "+replace+" to "+newLine);
 			}
 		}
 		return in;

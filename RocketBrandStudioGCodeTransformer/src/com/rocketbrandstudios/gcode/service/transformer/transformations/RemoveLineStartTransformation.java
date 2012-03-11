@@ -20,7 +20,7 @@ public final class RemoveLineStartTransformation implements Transformation {
 				v = v.trim();
 				Line newLine = new Line(v);
 				in.replace(line,newLine);
-				System.out.println("RemoveLineTransformation remove "+valueToRemove);
+//				System.out.println("RemoveLineTransformation remove "+valueToRemove);
 			}
 		}
 		return in;
