@@ -4,9 +4,12 @@ import java.io.File;
 
 import com.rocketbrandstudios.gcode.GCodeTransformer;
 import com.rocketbrandstudios.gcode.service.TransformerImpl;
+import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleValuesTransformation;
 
 public final class GCodeTransformerImpl implements GCodeTransformer {
 	private File in,out;
+	private int fScaling;
+	private int sScaling;
 	
 	public GCodeTransformerImpl(){
 		in = new File("C:/in.gcode");
@@ -15,7 +18,11 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	
 	@Override
 	public void go() {
-		new TransformerImpl().transform(in, out);
+		
+		new TransformerImpl(
+				new ScaleValuesTransformation("F",60),
+				new ScaleValuesTransformation("S",1)
+				).transform(in, out);
 	}
 
 	@Override
@@ -25,7 +32,7 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 
 	@Override
 	public void setFValue(int value) {
-		System.out.println("setFValue");
+		fScaling = value;
 	}
 
 	@Override
@@ -35,7 +42,7 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 
 	@Override
 	public void setSValue(int value) {
-		System.out.println("setSValue");
+		sScaling = value;
 	}
 
 }

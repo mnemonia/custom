@@ -6,12 +6,18 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Hashtable;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import com.rocketbrandstudios.gcode.GCodeTransformer;
 
@@ -44,7 +50,57 @@ public final class GCodeTransformerUI extends JPanel {
 	}
 
 	private void addParametrisation() {
-		// TODO Auto-generated method stub
+		JPanel parametrisation = new JPanel(new GridLayout(1,2));
+		add(parametrisation,BorderLayout.CENTER);
+
+		JPanel param = new JPanel(new BorderLayout());
+		parametrisation.add(param);
+		
+		JLabel fLabel = new JLabel("Adjust F Value", JLabel.CENTER);
+		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		param.add(fLabel, BorderLayout.NORTH);
+		final JSlider f = new JSlider(JSlider.VERTICAL,0,200,100);
+		param.add(f, BorderLayout.CENTER);
+		f.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				gCodeTransformer.setFValue((int)f.getValue());
+			}
+		});
+		f.setMajorTickSpacing(10);
+		f.setPaintTicks(true);
+		Hashtable labelTable = new Hashtable();
+		labelTable.put( new Integer( 0 ), new JLabel("0%") );
+		labelTable.put( new Integer( 100 ), new JLabel("100%") );
+		labelTable.put( new Integer( 200 ), new JLabel("200%") );
+		f.setLabelTable( labelTable );
+		f.setPaintLabels(true);
+		
+		param = new JPanel(new BorderLayout());
+		parametrisation.add(param);
+		
+		JLabel sLabel = new JLabel("Adjust S Value", JLabel.CENTER);
+		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
+		param.add(sLabel, BorderLayout.NORTH);
+		final JSlider s = new JSlider(JSlider.VERTICAL,0,200,100);
+		param.add(s);
+		
+		s.addChangeListener(new ChangeListener() {
+			
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				gCodeTransformer.setSValue((int)s.getValue());
+			}
+		});
+		s.setMajorTickSpacing(10);
+		s.setPaintTicks(true);
+		labelTable = new Hashtable<Integer, JLabel>();
+		labelTable.put( new Integer( 0 ), new JLabel("0%") );
+		labelTable.put( new Integer( 100 ), new JLabel("100%") );
+		labelTable.put( new Integer( 200 ), new JLabel("200%") );
+		s.setLabelTable( labelTable );
+		s.setPaintLabels(true);
 		
 	}
 

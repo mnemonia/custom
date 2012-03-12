@@ -21,7 +21,7 @@ public final class TransformerImpl implements Transformer {
 	private final List<Transformation> transformations = new ArrayList<Transformation>();
 	
 	
-	public TransformerImpl(){
+	public TransformerImpl(Transformation... t){
 		add(new AppendM03AfterG90AndG21Transformation());
 		add(new RemoveLineTransformation("M104"));
 		add(new RemoveLineTransformation("M105"));
@@ -34,8 +34,10 @@ public final class TransformerImpl implements Transformer {
 		add(new RemoveLineStartTransformation("M108"));
 		add(new ReplaceLineStartTransformation("M101", "M8"));
 		add(new ReplaceLineStartTransformation("M103", "M9"));
-		add(new ScaleValuesTransformation("F",60));
-		add(new ScaleValuesTransformation("S",1));
+
+		for (Transformation transformation : t) {
+			add(transformation);
+		}
 	}
 	
 	private void add(Transformation t){
