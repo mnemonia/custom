@@ -9,7 +9,9 @@ import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleVal
 public final class GCodeTransformerImpl implements GCodeTransformer {
 	private File in,out;
 	private int fScaling = 1;
+	private int fFactor = 60;
 	private int sScaling = 1;
+	private int sFactor = 1;
 	
 	public GCodeTransformerImpl(){
 		in = new File("C:/in.gcode");
@@ -18,10 +20,9 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	
 	@Override
 	public void go() {
-		System.out.println("GCodeTransformerImpl.go(fScaling:"+fScaling+", sScaling:"+sScaling+")");
 		new TransformerImpl(
-				new ScaleValuesTransformation("F",60,fScaling),
-				new ScaleValuesTransformation("S",1,sScaling)
+				new ScaleValuesTransformation("F",fFactor,fScaling),
+				new ScaleValuesTransformation("S",sFactor,sScaling)
 				).transform(in, out);
 	}
 
@@ -31,7 +32,7 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	}
 
 	@Override
-	public void setFValue(int value) {
+	public void setFScaling(int value) {
 		fScaling = value;
 	}
 
@@ -41,8 +42,18 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	}
 
 	@Override
-	public void setSValue(int value) {
+	public void setSScaling(int value) {
 		sScaling = value;
+	}
+
+	@Override
+	public void setFFactor(int value) {
+		fFactor = value;
+	}
+
+	@Override
+	public void setSFactor(int value) {
+		sFactor = value;
 	}
 
 }
