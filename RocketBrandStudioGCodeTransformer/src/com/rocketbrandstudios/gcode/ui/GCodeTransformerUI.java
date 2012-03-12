@@ -59,7 +59,7 @@ public final class GCodeTransformerUI extends JPanel {
 		JLabel fLabel = new JLabel("Adjust F Value", JLabel.CENTER);
 		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		param.add(fLabel, BorderLayout.NORTH);
-		final JSlider f = new JSlider(JSlider.VERTICAL,0,200,100);
+		final JSlider f = new JSlider(JSlider.VERTICAL,1,200,100);
 		param.add(f, BorderLayout.CENTER);
 		f.addChangeListener(new ChangeListener() {
 			
@@ -71,7 +71,7 @@ public final class GCodeTransformerUI extends JPanel {
 		f.setMajorTickSpacing(10);
 		f.setPaintTicks(true);
 		Hashtable labelTable = new Hashtable();
-		labelTable.put( new Integer( 0 ), new JLabel("0%") );
+		labelTable.put( new Integer( 1 ), new JLabel("1%") );
 		labelTable.put( new Integer( 100 ), new JLabel("100%") );
 		labelTable.put( new Integer( 200 ), new JLabel("200%") );
 		f.setLabelTable( labelTable );
@@ -83,7 +83,7 @@ public final class GCodeTransformerUI extends JPanel {
 		JLabel sLabel = new JLabel("Adjust S Value", JLabel.CENTER);
 		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		param.add(sLabel, BorderLayout.NORTH);
-		final JSlider s = new JSlider(JSlider.VERTICAL,0,200,100);
+		final JSlider s = new JSlider(JSlider.VERTICAL,1,200,100);
 		param.add(s);
 		
 		s.addChangeListener(new ChangeListener() {
@@ -96,7 +96,7 @@ public final class GCodeTransformerUI extends JPanel {
 		s.setMajorTickSpacing(10);
 		s.setPaintTicks(true);
 		labelTable = new Hashtable<Integer, JLabel>();
-		labelTable.put( new Integer( 0 ), new JLabel("0%") );
+		labelTable.put( new Integer( 1 ), new JLabel("1%") );
 		labelTable.put( new Integer( 100 ), new JLabel("100%") );
 		labelTable.put( new Integer( 200 ), new JLabel("200%") );
 		s.setLabelTable( labelTable );

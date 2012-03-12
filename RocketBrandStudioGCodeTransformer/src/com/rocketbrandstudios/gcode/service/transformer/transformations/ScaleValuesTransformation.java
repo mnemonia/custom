@@ -9,8 +9,10 @@ import com.rocketbrandstudios.gcode.service.Transformation;
 public final class ScaleValuesTransformation implements Transformation {
 	private final String marker;
 	private final int scaling;
+	private final int factor;
 	
-	public ScaleValuesTransformation(String marker, int scaling) {
+	public ScaleValuesTransformation(String marker, int factor, int scaling) {
+		this.factor = factor;
 		this.scaling = scaling;
 		this.marker = marker;
 	}
@@ -30,7 +32,7 @@ public final class ScaleValuesTransformation implements Transformation {
 				if(v.startsWith(marker)){
 					v = v.substring(1,v.length());
 					double d = Double.parseDouble(v);
-					d = scaling * d;
+					d = Math.round( 1.0/scaling * factor * d );
 					newLineBuffer.append(marker+d);
 				}else{
 					newLineBuffer.append(v);

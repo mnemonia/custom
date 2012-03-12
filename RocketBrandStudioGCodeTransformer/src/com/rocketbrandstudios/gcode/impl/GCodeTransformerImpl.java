@@ -8,8 +8,8 @@ import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleVal
 
 public final class GCodeTransformerImpl implements GCodeTransformer {
 	private File in,out;
-	private int fScaling;
-	private int sScaling;
+	private int fScaling = 1;
+	private int sScaling = 1;
 	
 	public GCodeTransformerImpl(){
 		in = new File("C:/in.gcode");
@@ -18,10 +18,10 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	
 	@Override
 	public void go() {
-		
+		System.out.println("GCodeTransformerImpl.go(fScaling:"+fScaling+", sScaling:"+sScaling+")");
 		new TransformerImpl(
-				new ScaleValuesTransformation("F",60),
-				new ScaleValuesTransformation("S",1)
+				new ScaleValuesTransformation("F",60,fScaling),
+				new ScaleValuesTransformation("S",1,sScaling)
 				).transform(in, out);
 	}
 
