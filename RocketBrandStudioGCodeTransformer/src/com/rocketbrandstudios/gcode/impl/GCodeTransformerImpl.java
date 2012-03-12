@@ -9,6 +9,7 @@ import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleVal
 public final class GCodeTransformerImpl implements GCodeTransformer {
 	private File in,out;
 	private int fScaling = 1;
+	private int fUpperLimit = 1000;
 	private int fFactor = 60;
 	private int sScaling = 1;
 	private int sFactor = 1;
@@ -21,8 +22,8 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	@Override
 	public void go() {
 		new TransformerImpl(
-				new ScaleValuesTransformation("F",fFactor,fScaling),
-				new ScaleValuesTransformation("S",sFactor,sScaling)
+				new ScaleValuesTransformation("F",fFactor,fScaling,fUpperLimit),
+				new ScaleValuesTransformation("S",sFactor,sScaling,Integer.MAX_VALUE)
 				).transform(in, out);
 	}
 
@@ -54,6 +55,11 @@ public final class GCodeTransformerImpl implements GCodeTransformer {
 	@Override
 	public void setSFactor(int value) {
 		sFactor = value;
+	}
+
+	@Override
+	public void setFUpperLimit(int value) {
+		fUpperLimit = value;
 	}
 
 }

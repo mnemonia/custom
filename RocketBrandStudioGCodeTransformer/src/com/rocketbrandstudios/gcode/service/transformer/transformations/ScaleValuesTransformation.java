@@ -10,11 +10,13 @@ public final class ScaleValuesTransformation implements Transformation {
 	private final String marker;
 	private final int scaling;
 	private final int factor;
+	private final int upperLimit;
 	
-	public ScaleValuesTransformation(String marker, int factor, int scaling) {
+	public ScaleValuesTransformation(String marker, int factor, int scaling, int upperLimit) {
 		this.factor = factor;
 		this.scaling = scaling;
 		this.marker = marker;
+		this.upperLimit = upperLimit;
 	}
 
 	@Override
@@ -36,14 +38,28 @@ public final class ScaleValuesTransformation implements Transformation {
 		while(t.hasMoreTokens()){
 			String v = t.nextToken();
 			if(v.startsWith(marker)){
-				v = v.substring(1,v.length());
-				double d = Double.parseDouble(v);
-				d = Math.round( 1.0/scaling/100.0 * factor * d );
-				newLineBuffer.append(marker+d);
+				newLineBuffer.append(
+						marker + 
+						calc(
+								extractValue(v)));
 			}else{
 				newLineBuffer.append(v);
 			}
 		}
 		return new Line(newLineBuffer.toString());
+	}
+
+	private String extractValue(String v) {
+		return v.substring(1,v.length());
+	}
+
+	private int calc(String v) {
+		double d = Double.parseDouble(v);
+		d *= factor;
+		d *= scaling / 100.0;
+		if(d > upperLimit){
+			d = upperLimit;
+		}
+		return (int)d;
 	}
 }

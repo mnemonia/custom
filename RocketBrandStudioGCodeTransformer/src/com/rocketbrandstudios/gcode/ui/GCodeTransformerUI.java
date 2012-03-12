@@ -30,6 +30,7 @@ public final class GCodeTransformerUI extends JPanel {
 	JTextField sFactorField;
 	private static final long serialVersionUID = 1L;
 	private final GCodeTransformer gCodeTransformer;
+	private JTextField fUpperField;
 
 	public GCodeTransformerUI(GCodeTransformer gCodeTransformer){
 		super(new BorderLayout());
@@ -75,6 +76,14 @@ public final class GCodeTransformerUI extends JPanel {
 		sFactorField = new JTextField("1", JLabel.SOUTH);
 		p.add(sFactorField, BorderLayout.CENTER);
 		
+		p = new JPanel(new BorderLayout());
+		param.add(p);
+		
+		JLabel fUpperLabel = new JLabel("F Upper Limit");
+		p.add(fUpperLabel, BorderLayout.WEST);
+		fUpperField = new JTextField("1000", JLabel.SOUTH);
+		p.add(fUpperField, BorderLayout.CENTER);
+
 		param = new JPanel(new BorderLayout());
 		parametrisation.add(param);
 		
@@ -174,6 +183,7 @@ public final class GCodeTransformerUI extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				gCodeTransformer.setFFactor(Integer.parseInt(fFactorField.getText()));
 				gCodeTransformer.setSFactor(Integer.parseInt(sFactorField.getText()));
+				gCodeTransformer.setFUpperLimit(Integer.parseInt(fUpperField.getText()));
 				gCodeTransformer.go();
 			}
 		});
