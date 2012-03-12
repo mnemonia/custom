@@ -32,7 +32,7 @@ public final class ScaleValuesTransformation implements Transformation {
 				if(v.startsWith(marker)){
 					v = v.substring(1,v.length());
 					double d = Double.parseDouble(v);
-					d = Math.round( 1.0/scaling * factor * d );
+					d = Math.round( 1.0/scaling/100.0 * factor * d );
 					newLineBuffer.append(marker+d);
 				}else{
 					newLineBuffer.append(v);
