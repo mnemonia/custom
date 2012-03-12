@@ -25,22 +25,25 @@ public final class ScaleValuesTransformation implements Transformation {
 				continue;
 			}
 
-			StringBuffer newLineBuffer = new StringBuffer();
-			StringTokenizer t = new StringTokenizer(line.getValue()," ",true);
-			while(t.hasMoreTokens()){
-				String v = t.nextToken();
-				if(v.startsWith(marker)){
-					v = v.substring(1,v.length());
-					double d = Double.parseDouble(v);
-					d = Math.round( 1.0/scaling/100.0 * factor * d );
-					newLineBuffer.append(marker+d);
-				}else{
-					newLineBuffer.append(v);
-				}
-			}
-
-			in.replace(line, new Line(newLineBuffer.toString()));
+			in.replace(line, transform(line));
 		}
 		return in;
+	}
+
+	private Line transform(Line line) {
+		StringBuffer newLineBuffer = new StringBuffer();
+		StringTokenizer t = new StringTokenizer(line.getValue()," ",true);
+		while(t.hasMoreTokens()){
+			String v = t.nextToken();
+			if(v.startsWith(marker)){
+				v = v.substring(1,v.length());
+				double d = Double.parseDouble(v);
+				d = Math.round( 1.0/scaling/100.0 * factor * d );
+				newLineBuffer.append(marker+d);
+			}else{
+				newLineBuffer.append(v);
+			}
+		}
+		return new Line(newLineBuffer.toString());
 	}
 }
