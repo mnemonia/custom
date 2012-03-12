@@ -2,7 +2,6 @@ package com.rocketbrandstudios.gcode.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,6 +20,8 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import com.rocketbrandstudios.gcode.GCodeTransformer;
+import com.rocketbrandstudios.gcode.service.transformer.Defaults;
+import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleValuesTransformation;
 
 public final class GCodeTransformerUI extends JPanel {
 	/**
@@ -31,6 +32,10 @@ public final class GCodeTransformerUI extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private final GCodeTransformer gCodeTransformer;
 	private JTextField fUpperField;
+	private JSlider fScaling;
+	private JSlider sScaling;
+	private File in = new File(Defaults.inFileName);
+	private File out = new File(Defaults.outFileName);
 
 	public GCodeTransformerUI(GCodeTransformer gCodeTransformer){
 		super(new BorderLayout());
@@ -54,10 +59,11 @@ public final class GCodeTransformerUI extends JPanel {
 	}
 
 	private void addParametrisation() {
+		
 		JPanel parametrisation = new JPanel(new GridLayout(1,3));
 		add(parametrisation,BorderLayout.CENTER);
 
-		JPanel param = new JPanel(new FlowLayout());
+		JPanel param = new JPanel(new GridLayout(6,1));
 		parametrisation.add(param);
 		
 		JPanel p = new JPanel(new BorderLayout());
@@ -65,7 +71,7 @@ public final class GCodeTransformerUI extends JPanel {
 		
 		JLabel fLabel = new JLabel("F Factor");
 		p.add(fLabel, BorderLayout.WEST);
-		fFactorField = new JTextField("60", JLabel.SOUTH);
+		fFactorField = new JTextField(""+Defaults.fFactor, JLabel.SOUTH);
 		p.add(fFactorField, BorderLayout.CENTER);
 		
 		p = new JPanel(new BorderLayout());
@@ -73,7 +79,7 @@ public final class GCodeTransformerUI extends JPanel {
 		
 		JLabel sLabel = new JLabel("S Factor");
 		p.add(sLabel, BorderLayout.WEST);
-		sFactorField = new JTextField("1", JLabel.SOUTH);
+		sFactorField = new JTextField(""+Defaults.sFactor, JLabel.SOUTH);
 		p.add(sFactorField, BorderLayout.CENTER);
 		
 		p = new JPanel(new BorderLayout());
@@ -81,7 +87,7 @@ public final class GCodeTransformerUI extends JPanel {
 		
 		JLabel fUpperLabel = new JLabel("F Upper Limit");
 		p.add(fUpperLabel, BorderLayout.WEST);
-		fUpperField = new JTextField("1000", JLabel.SOUTH);
+		fUpperField = new JTextField(""+Defaults.fUpperLimit, JLabel.SOUTH);
 		p.add(fUpperField, BorderLayout.CENTER);
 
 		param = new JPanel(new BorderLayout());
@@ -90,27 +96,23 @@ public final class GCodeTransformerUI extends JPanel {
 		fLabel = new JLabel("Adjust F Value", JLabel.CENTER);
 		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		param.add(fLabel, BorderLayout.NORTH);
-		final JSlider f = new JSlider(JSlider.VERTICAL,1,200,100);
-		param.add(f, BorderLayout.CENTER);
-		f.addChangeListener(new ChangeListener() {
+		fScaling = new JSlider(JSlider.VERTICAL,1,200,100);
+		param.add(fScaling, BorderLayout.CENTER);
+		fScaling.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				gCodeTransformer.setFScaling(f.getValue());
+				//gCodeTransformer.withFScaling(fScaling.getValue());
 			}
 		});
-		f.setMajorTickSpacing(10);
-		f.setPaintTicks(true);
+		fScaling.setMajorTickSpacing(10);
+		fScaling.setPaintTicks(true);
 		Hashtable<Integer, JLabel> labelTable = new Hashtable<Integer, JLabel>();
 		labelTable.put( new Integer( 1 ), new JLabel("1%") );
 		labelTable.put( new Integer( 100 ), new JLabel("100%") );
 		labelTable.put( new Integer( 200 ), new JLabel("200%") );
-		f.setLabelTable( labelTable );
-		f.setPaintLabels(true);
-		fLabel = new JLabel("0", JLabel.CENTER);
-		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-		param.add(fLabel, BorderLayout.SOUTH);
-
+		fScaling.setLabelTable( labelTable );
+		fScaling.setPaintLabels(true);
 		
 		param = new JPanel(new BorderLayout());
 		parametrisation.add(param);
@@ -118,24 +120,24 @@ public final class GCodeTransformerUI extends JPanel {
 		sLabel = new JLabel("Adjust S Value", JLabel.CENTER);
 		fLabel.setAlignmentX(JComponent.CENTER_ALIGNMENT);
 		param.add(sLabel, BorderLayout.NORTH);
-		final JSlider s = new JSlider(JSlider.VERTICAL,1,200,100);
-		param.add(s);
+		sScaling = new JSlider(JSlider.VERTICAL,1,200,100);
+		param.add(sScaling);
 		
-		s.addChangeListener(new ChangeListener() {
+		sScaling.addChangeListener(new ChangeListener() {
 			
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				gCodeTransformer.setSScaling(s.getValue());
+//				gCodeTransformer.withSScaling(sScaling.getValue());
 			}
 		});
-		s.setMajorTickSpacing(10);
-		s.setPaintTicks(true);
+		sScaling.setMajorTickSpacing(10);
+		sScaling.setPaintTicks(true);
 		labelTable = new Hashtable<Integer, JLabel>();
 		labelTable.put( new Integer( 1 ), new JLabel("1%") );
 		labelTable.put( new Integer( 100 ), new JLabel("100%") );
 		labelTable.put( new Integer( 200 ), new JLabel("200%") );
-		s.setLabelTable( labelTable );
-		s.setPaintLabels(true);
+		sScaling.setLabelTable( labelTable );
+		sScaling.setPaintLabels(true);
 		
 	}
 
@@ -154,14 +156,13 @@ public final class GCodeTransformerUI extends JPanel {
 			    int returnVal = fc.showOpenDialog(GCodeTransformerUI.this);
 				//
 			    if (returnVal == JFileChooser.APPROVE_OPTION) {
-			        File file = fc.getSelectedFile();
-			        gCodeTransformer.setImportFile(file);
+			        in = fc.getSelectedFile();
 			    }
 			}
 		});
-		JButton out = new JButton("Change Output File ...");
-		tb.add(out);
-		out.addActionListener(new ActionListener() {
+		JButton outFile = new JButton("Change Output File ...");
+		tb.add(outFile);
+		outFile.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -169,8 +170,7 @@ public final class GCodeTransformerUI extends JPanel {
 			    int returnVal = fc.showOpenDialog(GCodeTransformerUI.this);
 				//
 			    if (returnVal == JFileChooser.APPROVE_OPTION) {
-			        File file = fc.getSelectedFile();
-			        gCodeTransformer.setExportFile(file);			        
+			        out = fc.getSelectedFile();
 			    }
 			}
 		});
@@ -181,11 +181,19 @@ public final class GCodeTransformerUI extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gCodeTransformer.setFFactor(Integer.parseInt(fFactorField.getText()));
-				gCodeTransformer.setSFactor(Integer.parseInt(sFactorField.getText()));
-				gCodeTransformer.setFUpperLimit(Integer.parseInt(fUpperField.getText()));
-				gCodeTransformer.go();
+				gCodeTransformer.
+					transform(in.getAbsolutePath()).
+					into(out.getAbsolutePath()).
+					with(
+						new ScaleValuesTransformation("F",asInt(fFactorField.getText()),fScaling.getValue(),asInt(fUpperField.getText())),
+						new ScaleValuesTransformation("S",asInt(sFactorField.getText()),sScaling.getValue(),Integer.MAX_VALUE)
+						).
+					go();
 			}
 		});
+	}
+
+	protected int asInt(String text) {
+		return Integer.parseInt(text);
 	}
 }

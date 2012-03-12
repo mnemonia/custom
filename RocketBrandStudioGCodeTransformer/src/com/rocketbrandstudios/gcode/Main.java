@@ -16,7 +16,7 @@ public final class Main {
 		JFrame frame = new JFrame("Rocket Brand Studios GCode Transformer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setPreferredSize(new Dimension(800, 800));
-		frame.setMinimumSize(new Dimension(800,600));
+		frame.setMinimumSize(new Dimension(800,500));
 		
 		GCodeTransformer t = new GCodeTransformerImpl();
 		frame.add(new GCodeTransformerUI(t));

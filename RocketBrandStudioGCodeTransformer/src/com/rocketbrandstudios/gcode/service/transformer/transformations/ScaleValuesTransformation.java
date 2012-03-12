@@ -1,5 +1,6 @@
 package com.rocketbrandstudios.gcode.service.transformer.transformations;
 
+import java.text.DecimalFormat;
 import java.util.StringTokenizer;
 
 import com.rocketbrandstudios.gcode.model.Line;
@@ -11,6 +12,7 @@ public final class ScaleValuesTransformation implements Transformation {
 	private final int scaling;
 	private final int factor;
 	private final int upperLimit;
+	private final DecimalFormat decimalFormat = new DecimalFormat(".0");
 	
 	public ScaleValuesTransformation(String marker, int factor, int scaling, int upperLimit) {
 		this.factor = factor;
@@ -40,8 +42,8 @@ public final class ScaleValuesTransformation implements Transformation {
 			if(v.startsWith(marker)){
 				newLineBuffer.append(
 						marker + 
-						calc(
-								extractValue(v)));
+						format(calc(
+								extractValue(v))));
 			}else{
 				newLineBuffer.append(v);
 			}
@@ -49,17 +51,21 @@ public final class ScaleValuesTransformation implements Transformation {
 		return new Line(newLineBuffer.toString());
 	}
 
+	private String format(double calc) {
+		return decimalFormat.format(calc);
+	}
+
 	private String extractValue(String v) {
 		return v.substring(1,v.length());
 	}
 
-	private int calc(String v) {
+	private double calc(String v) {
 		double d = Double.parseDouble(v);
 		d *= factor;
 		d *= scaling / 100.0;
 		if(d > upperLimit){
 			d = upperLimit;
 		}
-		return (int)d;
+		return d;
 	}
 }

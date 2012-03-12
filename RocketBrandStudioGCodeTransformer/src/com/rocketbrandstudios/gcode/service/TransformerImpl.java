@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.rocketbrandstudios.gcode.model.Line;
@@ -15,13 +16,12 @@ import com.rocketbrandstudios.gcode.service.transformer.transformations.AppendM0
 import com.rocketbrandstudios.gcode.service.transformer.transformations.RemoveLineStartTransformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.RemoveLineTransformation;
 import com.rocketbrandstudios.gcode.service.transformer.transformations.ReplaceLineStartTransformation;
-import com.rocketbrandstudios.gcode.service.transformer.transformations.ScaleValuesTransformation;
 
 public final class TransformerImpl implements Transformer {
 	private final List<Transformation> transformations = new ArrayList<Transformation>();
 	
 	
-	public TransformerImpl(Transformation... t){
+	public TransformerImpl(Collection<Transformation> t){
 		add(new AppendM03AfterG90AndG21Transformation());
 		add(new RemoveLineTransformation("M104"));
 		add(new RemoveLineTransformation("M105"));

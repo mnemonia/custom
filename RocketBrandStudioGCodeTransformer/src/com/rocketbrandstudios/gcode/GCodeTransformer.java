@@ -1,14 +1,11 @@
 package com.rocketbrandstudios.gcode;
 
-import java.io.File;
+import com.rocketbrandstudios.gcode.service.Transformation;
+
 
 public interface GCodeTransformer {
-	public void setImportFile(File file);
-	public void setExportFile(File file);
+	public GCodeTransformer transform(String fName);
+	public GCodeTransformer into(String fName);
+	public GCodeTransformer with(Transformation... transformation);
 	public void go();
-	public void setFUpperLimit(int value);
-	public void setFFactor(int value);
-	public void setFScaling(int value);
-	public void setSFactor(int value);
-	public void setSScaling(int value);
 }
