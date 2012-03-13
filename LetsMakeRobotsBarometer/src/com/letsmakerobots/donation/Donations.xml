@@ -1,10 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <donations>
-<donation>
-<name>lvdalen@XXXXX</name>
-<amount>5.00</amount>
-<date>2012-03-12</date>
-</donation>
-<donation><name>grasshopperrocket@XXXXX</name><amount>10.00</amount><date>2012-03-12</date></donation><donation><name>noahm@XXXXX</name><amount>5.00</amount><date>2012-03-12</date></donation><donation><name>b.yoel0@XXXXX</name><amount>5.00</amount><date>2012-03-11</date></donation><donation><name>colton.j.bailey@XXXXX</name><amount>5.00</amount><date>2012-03-10</date></donation><donation><name>acackjay@XXXXX</name><amount>10.00</amount><date>2012-03-10</date></donation><donation><name>admin@XXXXX</name><amount>100.00</amount><date>2012-03-09</date></donation><donation><name>paul@XXXXX</name><amount>5.00</amount><date>2012-03-09</date></donation><donation><name>CKYamada@XXXXX</name><amount>5.00</amount><date>2012-03-09</date></donation><donation><name>telefox@XXXXX</name><amount>15.00</amount><date>2012-03-08</date></donation><donation><name>massavant@XXXXX</name><amount>10.00</amount><date>2012-03-08</date></donation><donation><name>supermif2@XXXXX</name><amount>5.00</amount><date>2012-03-07</date></donation><donation><name>purchasing.BOT@XXXXX</name><amount>10.00</amount><date>2012-03-07</date></donation><donation><name>brushofclint@XXXXX</name><amount>20.00</amount><date>2012-03-07</date></donation><donation><name>jkeneally@XXXXX</name><amount>20.00</amount><date>2012-03-07</date></donation><donation><name>pberns@XXXXX</name><amount>50.00</amount><date>2012-03-07</date></donation><donation><name>Aerospyke@XXXXX</name><amount>6.00</amount><date>2012-03-07</date>
-</donation>
+<donation><name>davidgduval</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>axelklohn@XXXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>supertick@XXXX</name>	<amount>30</amount><date>2012-03-10</date></donation>
+<donation><name>stigern@XXXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>genesis_0101@XXXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>denis.deschodt@XXXXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>Missouri Education and Robotics</name>	<amount>100</amount><date>2012-03-10</date></donation>
+<donation><name>danceswithrobots@XXXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>whp@XXXXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>rich_mays@XXXXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>klick</name>	<amount>100</amount><date>2012-03-10</date></donation>
+<donation><name>Bajdi</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>maxhirez@XXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>klick</name>	<amount>100</amount><date>2012-03-10</date></donation>
+<donation><name>hartley_rat@XXXXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>jimmonty@XXXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>AVENTGPS</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>RobotFreak</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>amramsey</name>	<amount>15</amount><date>2012-03-10</date></donation>
+<donation><name>Korel</name>	<amount>25</amount><date>2012-03-10</date></donation>
+<donation><name>Ben Makins</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>Gareth</name>	<amount>25</amount><date>2012-03-10</date></donation>
+<donation><name>myblack60impala</name>	<amount>100</amount><date>2012-03-10</date></donation>
+<donation><name>RONG CHIEH LLAY</name>	<amount>100</amount><date>2012-03-10</date></donation>
+<donation><name>Project2501</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>OddBot</name>	<amount>100</amount><date>2012-03-10</date></donation>
+<donation><name>NilsB</name>	<amount>20</amount><date>2012-03-10</date></donation>
+<donation><name>hardmouse@XXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>rb_ohara@XXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>mickledaniel@XXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>filippdem@XXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>ms767210@XXX</name>	<amount>20</amount><date>2012-03-10</date></donation>
+<donation><name>gf@XXX</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>sweeting_dave@XXXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>michiel@XXX</name>	<amount>25</amount><date>2012-03-10</date></donation>
+<donation><name>tbaumg@XXX</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>jhulson</name>	<amount>20</amount><date>2012-03-10</date></donation>
+<donation><name>hazza1607@hotmal.com</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>theandroidman</name>	<amount>3</amount><date>2012-03-10</date></donation>
+<donation><name>isotope</name>	<amount>50</amount><date>2012-03-10</date></donation>
+<donation><name>PeteH</name>	<amount>20</amount><date>2012-03-10</date></donation>
+<donation><name>ianverheyden@hotmail.com</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>grsshpr875@aol.com</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>justingc@ozemail.com.au</name>	<amount>20</amount><date>2012-03-10</date></donation>
+<donation><name>Lumi Online</name>	<amount>20</amount><date>2012-03-10</date></donation>
+<donation><name>flummer</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>ignoblegnome</name>	<amount>75</amount><date>2012-03-10</date></donation>
+<donation><name>ralph</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>LordGG</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>ChukCrunch</name>	<amount>50</amount><date>2012-03-10</date></donation>
+<donation><name>birdmun</name>	<amount>4</amount><date>2012-03-10</date></donation>
+<donation><name>Razvan</name>	<amount>10</amount><date>2012-03-10</date></donation>
+<donation><name>Geir Andersen</name>	<amount>4</amount><date>2012-03-10</date></donation>
+<donation><name>marieXXXXX@XXXXX.ch</name>	<amount>22</amount><date>2012-03-10</date></donation>
+<donation><name>Ro-Bot-X</name>	<amount>5</amount><date>2012-03-10</date></donation>
+<donation><name>TeleFox</name>	<amount>15</amount><date>2012-03-10</date></donation>
+<donation><name>AJN</name>	<amount>15</amount><date>2012-03-10</date></donation>
+<donation><name>mogul</name>	<amount>5</amount><date>2012-03-10</date></donation>
 </donations>

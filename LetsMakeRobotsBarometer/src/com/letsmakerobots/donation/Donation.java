@@ -5,7 +5,7 @@ import javax.xml.bind.annotation.XmlElement;
 public class Donation {
 	private String date;
 	private String name;
-	private String value;
+	private String amount;
 	
 	public String getDate() {
 		return date;
@@ -21,11 +21,11 @@ public class Donation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getValue() {
-		return value;
+	public String getAmount() {
+		return amount;
 	}
 	@XmlElement
-	public void setValue(String value) {
-		this.value = value;
+	public void setAmount(String amount) {
+		this.amount = amount;
 	}
 }
