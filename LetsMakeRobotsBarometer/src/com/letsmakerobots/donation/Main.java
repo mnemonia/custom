@@ -10,7 +10,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
 import com.letsmakerobots.donation.barometer.DonationBarometer;
-import com.letsmakerobots.donation.barometer.impl.DonationProgressImpl;
+import com.letsmakerobots.donation.barometer.impl.DonationPieChart;
+import com.letsmakerobots.donation.barometer.impl.DonationSparkLine;
+import com.letsmakerobots.donation.barometer.impl.DonationVerticalBarChart;
 
 public class Main {
 
@@ -30,7 +32,7 @@ public class Main {
     donations = new Donations();
     donations.setDonations(ds);
     
-    DonationBarometer barometer = new DonationProgressImpl(); //new DonationBarometerImpl();
+    DonationBarometer barometer = new DonationPieChart();//new DonationVerticalBarChart();//new DonationSparkLine();//new DonationProgressImpl(); //new DonationBarometerImpl();
     File out = new File("c:/out.html");
     PrintWriter p = new PrintWriter(out);
     p.print(barometer.create(donations));

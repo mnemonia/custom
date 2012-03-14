@@ -30,6 +30,10 @@ public class Donations {
 	}
 	
 	public Collection<Donation> getByDate(){
+		return internalGetByDate(donations);
+	}
+	
+	private Collection<Donation> internalGetByDate(Collection<Donation> theDonations){
 		Comparator<Donation> c = new Comparator<Donation>() {
 			DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 			@Override
@@ -45,12 +49,12 @@ public class Donations {
 				return 0;
 			}
 		};
-		List<Donation> sortedDonations = new ArrayList<Donation>(donations);
+		List<Donation> sortedDonations = new ArrayList<Donation>(theDonations);
 		Collections.sort(sortedDonations,c);
 		return sortedDonations;
 	}
 	
-	public Collection<Donation> summarizeDonationsByDate(){
+	public Collection<Donation> getSummarizeDonationsByDate(){
 		Map<String,Double> map = new HashMap<String, Double>();
 		for (Donation d : getByDate()) {
 			if(!map.containsKey(d.getDate())){
@@ -69,8 +73,24 @@ public class Donations {
 			d.setAmount(""+e.getValue());
 			don.add(d);
 		}
-		return don;
+		return internalGetByDate(don);
 	}
+
+	public Collection<Donation> getCumulativeDonationsByDate(){
+		Collection<Donation> result = new ArrayList<Donation>();
+		Collection<Donation> internalGetByDate = getSummarizeDonationsByDate();
+		double amount = 0.0;
+		for (Donation donation : internalGetByDate) {
+			amount += Double.parseDouble(donation.getAmount());
+
+			Donation newDonation = new Donation();
+			newDonation.setAmount(""+amount);
+			newDonation.setDate(donation.getDate());
+			result.add(newDonation);
+		}
+		return result;
+	}
+
 	
 	public int summarizeDonations(){
 		double sum = 0;
@@ -80,4 +100,7 @@ public class Donations {
 		return (int)sum;
 	}
 	
+	public int getEstimatedTotalAmount() {
+		return 10000;
+	}
 }
