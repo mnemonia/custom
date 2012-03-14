@@ -20,17 +20,17 @@ public final class DonationProgressImpl implements DonationBarometer {
 		b.append("      function drawChart() {\n");
 		b.append("        var data = new google.visualization.DataTable();\n");
 		b.append("        data.addColumn('string', 'Day');\n");
-		b.append("        data.addColumn('number', 'LMRv4 Development Costs');\n");
+		//b.append("        data.addColumn('number', 'LMRv4 Development Costs');\n");
 		b.append("        data.addColumn('number', 'Your Donations');\n");
-		Collection<Donation> byDate = donations.summarizeDonationsByDate();
+		Collection<Donation> byDate = donations.getSummarizeDonationsByDate();
 		b.append("        data.addRows("+byDate.size()+");\n");
 		int i = 0;
 		double sum = 0.0;
 		for (Donation amount : byDate) {
-			b.append("        data.setValue("+i+", 0, '"+amount.getDate()+"');\n");
-			b.append("        data.setValue("+i+", 1, 30000);\n");
+			b.append("        data.setValue("+i+", 0, '"+amount.getDate().substring("2012-".length(), amount.getDate().length())+"');\n");
+			//b.append("        data.setValue("+i+", 1, 30000);\n");
 			sum += Double.parseDouble(amount.getAmount());
-			b.append("        data.setValue("+i+", 2, "+sum+");\n");
+			b.append("        data.setValue("+i+", 1, "+sum+");\n");
 			i++;
 		}
 		b.append("\n");
