@@ -1,0 +1,88 @@
+<div class="form-container">
+    <mat-form-field>
+        <mat-select placeholder="Maschine" [(value)]="currentMachine">
+            <mat-option *ngFor="let machine of machines" [value]="machine">
+                {{machine.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="default-value-container">
+        <input matInput type="number" placeholder="Max Drehzahl" [(value)]="currentMachine.maxSpindleDrehzahl">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-select placeholder="Material" [(value)]="currentMaterial">
+            <mat-option *ngFor="let material of materials" [value]="material">
+                {{material.label}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+<mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+    <mat-tab label="Stirn">
+        <mat-card>
+            <mat-form-field>
+                <input matInput #box1 (blur)="setDiameter(box1.value)" type="number" placeholder="Durchmesser d" [value]="_diameter">
+            </mat-form-field>
+            <div class="param-container">
+                <mat-form-field>
+                    <input #box2 (blur)="setVorschub_fz(box2.value)" matInput type="number" placeholder="Vorschub fz" [(value)]="vorschub_fz">
+                </mat-form-field>
+                <mat-form-field class="result-container">
+                    <input matInput type="number" placeholder="Vorschub fz" [value]="fzOptimiert">
+                </mat-form-field>
+            </div>
+            <mat-form-field>
+                <input #box6 (blur)="setToothcount(box6.value)" matInput type="number" placeholder="Zähnezahl" [(value)]="toothcount">
+            </mat-form-field>
+            <div class="param-container">
+                <mat-form-field class="default-value-container">
+                    <input #box3 (blur)="setSchnittgeschwindigkeit(box3.value)" matInput type="number" placeholder="Schnittgeschwindigkeit" [(value)]="currentSchnittgeschwindigkeit">
+                </mat-form-field>
+                <mat-form-field class="result-container">
+                    <input matInput type="number" placeholder="Schnittgeschwindigkeit" [value]="vc2">
+                </mat-form-field>
+            </div>
+            <div class="param-container">
+                <mat-form-field class="default-value-container">
+                    <input #box4 (blur)="setEingriffswinkel(box4.value)" matInput type="number" placeholder="Eingriffswinkel φs" [(value)]="currentEingriffswinkel">
+                </mat-form-field>
+                <mat-form-field class="result-container">
+                    <input matInput type="number" placeholder="Eingriffswinkel" [value]="_currentEingriffswinkel">
+                </mat-form-field>
+            </div>
+            <div class="param-container">
+                <mat-form-field>
+                    <input #box5 (blur)="setZustellungAe(box5.value)" matInput type="number" placeholder="Zustellung ae" [(value)]="zustellungAe">
+                </mat-form-field>
+                <mat-form-field class="result-container">
+                    <input matInput type="number" placeholder="Zustellung ae" [value]="zustellungAe2">
+                </mat-form-field>
+            </div>
+        </mat-card>
+        <mat-card>
+            <app-face-milling></app-face-milling>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label="Umfang">
+        <mat-card>
+        <div class="param-col-container">
+                <div class="example-container">
+                    <mat-form-field>
+                        <input #box7 (blur)="setDiameter(box7.value)" matInput type="number" placeholder="Durchmesser d" [value]="_diameter">
+                    </mat-form-field>
+                </div>
+                <div class="example-container">
+                    <mat-form-field class="result-container">
+                        <input matInput type="number" placeholder="Drehzahl" [value]="drehzahl">
+                    </mat-form-field>
+                    <mat-form-field class="result-container">
+                        <input matInput type="number" placeholder="Vorschub" [value]="vorschub">
+                    </mat-form-field>
+                </div>
+            </div>
+            </mat-card>
+        <mat-card>
+            <app-periferal-milling></app-periferal-milling>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,36 @@
+.chart-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.chart-item {
+
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.param-col-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.graphic-card {
+    height: 120px;
+}
+
+
+.result-container {
+    background-color: #afafaf;
+}
+
+.default-value-container {
+    background-color: #f0e7e2;
+}
+
+.param-container {
+    display: flex;
+    flex-direction: row;
+}
