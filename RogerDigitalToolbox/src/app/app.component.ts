@@ -54,10 +54,30 @@ export class AppComponent implements OnInit {
   public mittlereSpanndicke: number = 0;
   public eingriffsflaeche: number = 0;
 
+  applyStoredData() {
+    let storedData = window.localStorage.getItem("gl.ing.mill.ToolboxData");
+    if(storedData) {
+      let data = JSON.parse(storedData);
+      this.machines.filter(m =>{return (m.id === data.machine_id)}).forEach(m => {
+        this._currentMachine = m;
+      });
+      this.materials.filter(m => {return (m.id === data.material_id)}).forEach(m => {
+       this._currentMaterial = m;
+      });
+      this._currentSchnittgeschwindigkeit = data.schnitt_geschwindigkeit;
+      this._currentMaxDrehzahl = data.max_drehzahl;
+      this._diameter = data.diameter;
+      this._currentEingriffswinkel = data.eingriffswinkel;
+      this.toothcount = data.tooth_count;
+      this.vorschub_fz = data.vorschub_fz;
+      this.zustellungAe = data.zustellung_ae;
+    }
+  }
 
   ngOnInit() {
     this.initMachines();
     this.initMaterials();
+    this.applyStoredData();
     this.recalc();
   }
 
@@ -82,7 +102,8 @@ export class AppComponent implements OnInit {
     return this._currentMachine;
   }
 
-  set currentMaxDrehzahl(dz: number) {
+  setCurrentMaxDrehzahl(dz: number) {
+
     this._currentMaxDrehzahl = dz;
     this.recalc();
   }
@@ -102,13 +123,13 @@ export class AppComponent implements OnInit {
 
   public setSchnittgeschwindigkeit(value: number) {
     console.log("Schnittgeschwindigkeit:",value);
-    this.currentSchnittgeschwindigkeit = value;
+    this._currentSchnittgeschwindigkeit = value;
     this.recalc();
   }
 
   public setEingriffswinkel(value: number) {
     console.log("Eingriffswinkel:",value);
-    this.currentEingriffswinkel = value;
+    this._currentEingriffswinkel = value;
     this.recalc();
   }
 
@@ -123,29 +144,6 @@ export class AppComponent implements OnInit {
     this.toothcount = value;
     this.recalc();
   }
-
-  get currentMaxDrehzahl() {
-    return this._currentMaxDrehzahl;
-  }
-
-  set currentEingriffswinkel(ew: number) {
-    this._currentEingriffswinkel = ew;
-    this.recalc();
-  }
-
-  get currentEingriffswinkel() {
-    return this._currentEingriffswinkel;
-  }
-
-  set currentSchnittgeschwindigkeit(cv: number) {
-    this._currentSchnittgeschwindigkeit = cv;
-    this.recalc();
-  }
-
-  get currentSchnittgeschwindigkeit() {
-    return this._currentSchnittgeschwindigkeit;
-  }
-
 
 
   recalc() {
@@ -186,6 +184,20 @@ export class AppComponent implements OnInit {
     this.zustellungAe2 = Math.round(1000 * this.zustellungAe2)/1000;
     this.drehzahl = Math.round(1000 * this.drehzahl)/1000;
     this.vorschub = Math.round(1000 * this.vorschub)/1000;
+
+    let data = {
+      machine_id: this._currentMachine.id,
+      material_id: this._currentMaterial.id,
+      schnitt_geschwindigkeit: this._currentSchnittgeschwindigkeit,
+      max_drehzahl: this._currentMaxDrehzahl,
+      diameter: this._diameter,
+      eingriffswinkel: this._currentEingriffswinkel,
+      tooth_count: this.toothcount,
+      vorschub_fz: this.vorschub_fz,
+      zustellung_ae: this.zustellungAe
+    };
+    let dataAsString = JSON.stringify(data);
+    window.localStorage.setItem("gl.ing.mill.ToolboxData",dataAsString);
   }
 
   initMachines() {

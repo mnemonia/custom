@@ -7,6 +7,7 @@ import { FaceMillingComponent } from './face-milling/face-milling.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatCardModule, MatTabsModule, MatInputModule, MatSelectModule} from "@angular/material";
 import {MatFormFieldModule} from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,

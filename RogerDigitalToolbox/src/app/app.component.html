@@ -7,8 +7,9 @@
         </mat-select>
     </mat-form-field>
     <mat-form-field class="default-value-container">
-        <input matInput type="number" placeholder="Max Drehzahl" [(value)]="currentMachine.maxSpindleDrehzahl">
+        <input matInput #box10 (blur)="setCurrentMaxDrehzahl(box10.value)" type="number" placeholder="Max Drehzahl" [value]="currentMachine.maxSpindleDrehzahl">
     </mat-form-field>
+
     <mat-form-field>
         <mat-select placeholder="Material" [(value)]="currentMaterial">
             <mat-option *ngFor="let material of materials" [value]="material">
@@ -25,18 +26,18 @@
             </mat-form-field>
             <div class="param-container">
                 <mat-form-field>
-                    <input #box2 (blur)="setVorschub_fz(box2.value)" matInput type="number" placeholder="Vorschub fz" [(value)]="vorschub_fz">
+                    <input #box2 (blur)="setVorschub_fz(box2.value)" matInput type="number" placeholder="Vorschub fz" [value]="vorschub_fz">
                 </mat-form-field>
                 <mat-form-field class="result-container">
                     <input matInput type="number" placeholder="Vorschub fz" [value]="fzOptimiert">
                 </mat-form-field>
             </div>
             <mat-form-field>
-                <input #box6 (blur)="setToothcount(box6.value)" matInput type="number" placeholder="Zähnezahl" [(value)]="toothcount">
+                <input #box6 (blur)="setToothcount(box6.value)" matInput type="number" placeholder="Zähnezahl" [value]="toothcount">
             </mat-form-field>
             <div class="param-container">
                 <mat-form-field class="default-value-container">
-                    <input #box3 (blur)="setSchnittgeschwindigkeit(box3.value)" matInput type="number" placeholder="Schnittgeschwindigkeit" [(value)]="currentSchnittgeschwindigkeit">
+                    <input #box3 (blur)="setSchnittgeschwindigkeit(box3.value)" matInput type="number" placeholder="Schnittgeschwindigkeit" [value]="_currentSchnittgeschwindigkeit">
                 </mat-form-field>
                 <mat-form-field class="result-container">
                     <input matInput type="number" placeholder="Schnittgeschwindigkeit" [value]="vc2">
@@ -44,7 +45,7 @@
             </div>
             <div class="param-container">
                 <mat-form-field class="default-value-container">
-                    <input #box4 (blur)="setEingriffswinkel(box4.value)" matInput type="number" placeholder="Eingriffswinkel φs" [(value)]="currentEingriffswinkel">
+                    <input #box4 (blur)="setEingriffswinkel(box4.value)" matInput type="number" placeholder="Eingriffswinkel φs" [value]="_currentEingriffswinkel">
                 </mat-form-field>
                 <mat-form-field class="result-container">
                     <input matInput type="number" placeholder="Eingriffswinkel" [value]="_currentEingriffswinkel">
@@ -52,7 +53,7 @@
             </div>
             <div class="param-container">
                 <mat-form-field>
-                    <input #box5 (blur)="setZustellungAe(box5.value)" matInput type="number" placeholder="Zustellung ae" [(value)]="zustellungAe">
+                    <input #box5 (blur)="setZustellungAe(box5.value)" matInput type="number" placeholder="Zustellung ae" [value]="zustellungAe">
                 </mat-form-field>
                 <mat-form-field class="result-container">
                     <input matInput type="number" placeholder="Zustellung ae" [value]="zustellungAe2">
